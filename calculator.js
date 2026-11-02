@@ -47,6 +47,7 @@
   }
   modes.forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.calcMode;calculate();}));
   form.addEventListener('input',calculate);form.addEventListener('change',calculate);
+  form.addEventListener('invalid',e=>{const details=e.target.closest('details');if(details)details.open=true;},true);
   form.addEventListener('submit',e=>{e.preventDefault();calculate();if(form.reportValidity())document.getElementById('calc-result').focus();});
   document.getElementById('example').addEventListener('click',()=>{form.reset();mode='buy';calculate();});
   document.querySelectorAll('[data-rental]').forEach(a=>a.addEventListener('click',()=>{const details=document.querySelector('#request-form [name="details"]');if(!details.value.trim())details.value='Интересует оборудование в аренду на пробу. Просим уточнить доступный комплект, срок и стоимость.';}));
